@@ -1,0 +1,53 @@
+<div class="floating-buttons-center" id="buttonGroup">
+  <a href="https://septemberone.online/nunc-ultricies-lectus-nibh-nec/" target="_blank" onclick="markHidden(1)"><button id="btn1">Button 1</button></a>
+  <a href="https://septemberone.online/aenean-ullamcorper-egestas-consectetur/" target="_blank" onclick="markHidden(2)"><button id="btn2">Button 2</button></a>
+  <a href="https://septemberone.online/praesent-quis-lectus-a-urna-scelerisque-pellentesque/" target="_blank" onclick="markHidden(3)"><button id="btn3">Button 3</button></a>
+</div>
+
+<style>
+.floating-buttons-center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.floating-buttons-center a {
+  text-decoration: none;
+}
+
+.floating-buttons-center button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.floating-buttons-center button:hover {
+  background-color: #388e3c;
+}
+</style>
+
+<script>
+function markHidden(btnNumber) {
+  localStorage.setItem('hideBtn' + btnNumber, 'true');
+  document.getElementById('btn' + btnNumber).style.display = 'none';
+}
+
+window.onload = function () {
+  for (let i = 1; i <= 3; i++) {
+    if (localStorage.getItem('hideBtn' + i) === 'true') {
+      const btn = document.getElementById('btn' + i);
+      if (btn) btn.style.display = 'none';
+    }
+  }
+}
+</script>
